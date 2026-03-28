@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Armandita Coffee &amp; Friends — En Construcción</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lato:wght@300;400&display=swap');
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: #1a110a;
+      overflow: hidden;
+      font-family: 'Lato', sans-serif;
+      color: #f5ebe0;
+    }
+
+    /* ===== STEAM PARTICLES ===== */
+    .steam-container {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .steam {
+      position: absolute;
+      bottom: 0;
+      width: 8px;
+      height: 8px;
+      background: radial-gradient(circle, rgba(210,180,140,0.25), transparent);
+      border-radius: 50%;
+      animation: rise linear infinite;
+      filter: blur(3px);
+    }
+
+    @keyframes rise {
+      0% { transform: translateY(0) scale(1) rotate(0deg); opacity: 0; }
+      10% { opacity: 0.6; }
+      50% { opacity: 0.3; }
+      100% { transform: translateY(-100vh) scale(3) rotate(360deg); opacity: 0; }
+    }
+
+    /* ===== COFFEE CUP ANIMATION ===== */
+    .cup-scene {
+      position: relative;
+      z-index: 1;
+      margin-bottom: 40px;
+    }
+
+    .cup-wrapper {
+      position: relative;
+      width: 160px;
+      height: 180px;
+    }
+
+    /* Saucer */
+    .saucer {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 180px;
+      height: 24px;
+      background: linear-gradient(180deg, #d4a574, #b8845a);
+      border-radius: 50%;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+    }
+
+    .saucer::after {
+      content: '';
+      position: absolute;
+      top: 3px;
+      left: 10%;
+      width: 80%;
+      height: 40%;
+      background: rgba(255,255,255,0.15);
+      border-radius: 50%;
+    }
+
+    /* Cup body */
+    .cup {
+      position: absolute;
+      bottom: 12px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 120px;
+      height: 100px;
+      background: linear-gradient(135deg, #f5f0eb, #e8ddd4);
+      border-radius: 0 0 30px 30px;
+      overflow: hidden;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+    }
+
+    .cup::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 8px;
+      background: linear-gradient(180deg, #e0d5ca, #f5f0eb);
+      border-radius: 4px 4px 0 0;
+    }
+
+    /* Coffee inside the cup */
+    .coffee {
+      position: absolute;
+      top: 12px;
+      left: 6px;
+      right: 6px;
+      bottom: 8px;
+      background: linear-gradient(180deg, #3c1e0a, #5a2d0c, #6b3410);
+      border-radius: 0 0 24px 24px;
+      overflow: hidden;
+    }
+
+    .coffee::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 30%;
+      background: radial-gradient(ellipse at 30% 50%, rgba(180,130,80,0.4), transparent 60%);
+      animation: coffeeShimmer 4s ease-in-out infinite;
+    }
+
+    @keyframes coffeeShimmer {
+      0%, 100% { opacity: 0.5; transform: translateX(-10px); }
+      50% { opacity: 1; transform: translateX(10px); }
+    }
+
+    /* Cup handle */
+    .handle {
+      position: absolute;
+      right: -28px;
+      top: 50%;
+      transform: translateY(-60%);
+      width: 36px;
+      height: 50px;
+      border: 8px solid #f5f0eb;
+      border-left: none;
+      border-radius: 0 30px 30px 0;
+      box-shadow: 3px 3px 8px rgba(0,0,0,0.2);
+    }
+
+    /* Cup steam */
+    .cup-steam {
+      position: absolute;
+      top: -40px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 12px;
+    }
+
+    .cup-steam span {
+      display: block;
+      width: 8px;
+      height: 40px;
+      background: linear-gradient(to top, rgba(200,180,160,0.4), transparent);
+      border-radius: 50%;
+      filter: blur(4px);
+      animation: steam 2.5s ease-in-out infinite;
+    }
+
+    .cup-steam span:nth-child(1) { animation-delay: 0s; height: 35px; }
+    .cup-steam span:nth-child(2) { animation-delay: 0.4s; height: 45px; }
+    .cup-steam span:nth-child(3) { animation-delay: 0.8s; height: 30px; }
+
+    @keyframes steam {
+      0% { transform: translateY(0) scaleX(1); opacity: 0; }
+      15% { opacity: 0.7; }
+      50% { transform: translateY(-20px) scaleX(1.8); opacity: 0.3; }
+      100% { transform: translateY(-45px) scaleX(2.5); opacity: 0; }
+    }
+
+    /* ===== COFFEE BEANS FLOATING ===== */
+    .bean {
+      position: fixed;
+      z-index: 0;
+      font-size: 28px;
+      opacity: 0;
+      animation: floatBean linear infinite;
+    }
+
+    @keyframes floatBean {
+      0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+      10% { opacity: 0.15; }
+      90% { opacity: 0.15; }
+      100% { transform: translateY(-10vh) rotate(720deg); opacity: 0; }
+    }
+
+    /* ===== TEXT CONTENT ===== */
+    .content {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      max-width: 600px;
+      padding: 0 20px;
+    }
+
+    .logo-img {
+      width: 180px;
+      height: auto;
+      margin-bottom: 20px;
+      filter: drop-shadow(0 2px 8px rgba(0,0,0,0.4));
+      animation: fadeIn 1.5s ease forwards;
+    }
+
+    .title {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.6rem;
+      font-weight: 700;
+      color: #d4a574;
+      margin-bottom: 15px;
+      animation: fadeIn 1.5s ease 0.3s both;
+    }
+
+    .subtitle {
+      font-size: 1.1rem;
+      font-weight: 300;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: #c8956c;
+      margin-bottom: 30px;
+      animation: fadeIn 1.5s ease 0.6s both;
+      position: relative;
+    }
+
+    .subtitle::before,
+    .subtitle::after {
+      content: '✦';
+      margin: 0 12px;
+      font-size: 0.6rem;
+      vertical-align: middle;
+      color: #a07850;
+    }
+
+    .message {
+      font-size: 1rem;
+      line-height: 1.8;
+      color: #bfa88e;
+      margin-bottom: 40px;
+      animation: fadeIn 1.5s ease 0.9s both;
+    }
+
+    /* ===== PROGRESS BAR ===== */
+    .progress-section {
+      animation: fadeIn 1.5s ease 1.2s both;
+      margin-bottom: 35px;
+    }
+
+    .progress-label {
+      font-size: 0.8rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #8a7560;
+      margin-bottom: 12px;
+    }
+
+    .progress-bar {
+      width: 300px;
+      height: 6px;
+      background: rgba(255,255,255,0.08);
+      border-radius: 3px;
+      margin: 0 auto;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, #8b5e3c, #d4a574, #c8956c);
+      border-radius: 3px;
+      animation: fillProgress 3s ease 2s forwards;
+      position: relative;
+    }
+
+    .progress-fill::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+      animation: shimmer 2s infinite 3s;
+    }
+
+    @keyframes fillProgress {
+      to { width: 65%; }
+    }
+
+    @keyframes shimmer {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(100%); }
+    }
+
+    /* ===== SOCIAL LINKS ===== */
+    .social {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      animation: fadeIn 1.5s ease 1.5s both;
+    }
+
+    .social a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.06);
+      color: #c8956c;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      border: 1px solid rgba(200,149,108,0.15);
+    }
+
+    .social a:hover {
+      background: #c8956c;
+      color: #1a110a;
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(200,149,108,0.3);
+    }
+
+    .social svg {
+      width: 20px;
+      height: 20px;
+      fill: currentColor;
+    }
+
+    /* ===== FOOTER ===== */
+    .footer-text {
+      position: fixed;
+      bottom: 20px;
+      font-size: 0.75rem;
+      color: #5a4a3a;
+      letter-spacing: 1px;
+      z-index: 1;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 480px) {
+      .title { font-size: 1.8rem; }
+      .subtitle { font-size: 0.85rem; letter-spacing: 2px; }
+      .cup-wrapper { transform: scale(0.8); }
+      .progress-bar { width: 240px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Floating steam particles background -->
+  <div class="steam-container" id="steamContainer"></div>
+
+  <!-- Coffee cup animation -->
+  <div class="cup-scene">
+    <div class="cup-wrapper">
+      <div class="cup-steam">
+        <span></span><span></span><span></span>
+      </div>
+      <div class="cup">
+        <div class="coffee"></div>
+      </div>
+      <div class="handle"></div>
+      <div class="saucer"></div>
+    </div>
+  </div>
+
+  <!-- Main content -->
+  <div class="content">
+    <img
+      src="img1.wsimg.com/isteam/ip/21607de0-9c7b-4533-b2fb-1bc0f240ce07/logo/logo.webp"
+      alt="Armandita Coffee &amp; Friends"
+      class="logo-img"
+    >
+    <h1 class="title">Estamos preparando algo especial</h1>
+    <p class="subtitle">En construcción</p>
+    <p class="message">
+      Nuestro sitio web se está preparando con el mismo cuidado<br>
+      con el que preparamos tu café favorito.<br>
+      Pronto podrás conocer todo sobre nosotros.
+    </p>
+
+    <div class="progress-section">
+      <p class="progress-label">Preparando tu experiencia</p>
+      <div class="progress-bar">
+        <div class="progress-fill"></div>
+      </div>
+    </div>
+
+    <div class="social">
+      <a href="https://www.facebook.com/armanditacoffeeandfriends/?locale=es_LA" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+        <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+      </a>
+      <a href="https://www.instagram.com/armanditacoffeeandfriends/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+        <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+      </a>
+      <a href="https://www.tiktok.com/@armandita.coffee.friends" target="_blank" rel="noopener noreferrer" aria-label="TikTok">
+        <svg viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>
+      </a>
+      <a href="https://wa.me/526643142424" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      </a>
+    </div>
+  </div>
+
+  <p class="footer-text">&copy; 2026 Armandita Coffee and Friends</p>
+
+  <script>
+    // Generate floating steam particles
+    const container = document.getElementById('steamContainer');
+    for (let i = 0; i < 25; i++) {
+      const particle = document.createElement('div');
+      particle.className = 'steam';
+      particle.style.left = Math.random() * 100 + '%';
+      particle.style.width = (Math.random() * 12 + 4) + 'px';
+      particle.style.height = particle.style.width;
+      particle.style.animationDuration = (Math.random() * 8 + 6) + 's';
+      particle.style.animationDelay = (Math.random() * 10) + 's';
+      container.appendChild(particle);
+    }
+
+    // Generate floating coffee beans (☕ emoji as beans)
+    const beans = ['☕', '✦', '•'];
+    for (let i = 0; i < 8; i++) {
+      const bean = document.createElement('div');
+      bean.className = 'bean';
+      bean.textContent = beans[i % beans.length];
+      bean.style.left = (10 + Math.random() * 80) + '%';
+      bean.style.fontSize = (16 + Math.random() * 20) + 'px';
+      bean.style.animationDuration = (12 + Math.random() * 10) + 's';
+      bean.style.animationDelay = (Math.random() * 15) + 's';
+      document.body.appendChild(bean);
+    }
+  </script>
+</body>
+</html>
