@@ -13,7 +13,7 @@ export default function ContactSection() {
             <p className="contact-desc">Disfruta de tus alimentos preparados en casa y café de alta especialidad.</p>
 
             <a
-              href="https://wa.me/526643142424"
+              href="https://wa.me/526634316007"
               target="_blank"
               rel="noopener noreferrer"
               className="btn btn-whatsapp"
@@ -55,7 +55,7 @@ export default function ContactSection() {
           <div className="map-container">
             <iframe
               title="Ubicación Armandita Coffee and Friends"
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3364.2!2d-117.0385!3d32.5313!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80d9484a5b6b0b0f%3A0x0!2sGonz%C3%A1lez+Ortega+850%2C+Centro%2C+22000+Tijuana%2C+B.C.!5e0!3m2!1ses!2smx!4v1"
+              src="https://www.google.com/maps?q=González+Ortega+850,+Zona+Centro,+22000+Tijuana,+B.C.,+Mexico&output=embed"
               width="100%"
               height="100%"
               style={{ border: 0 }}

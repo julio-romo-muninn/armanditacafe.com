@@ -78,7 +78,7 @@ export default function ProductsSection() {
       i => `• ${i.product.name} x${i.qty} — ${formatMXN(i.product.price * i.qty)}`
     )
     const msg = `¡Hola! Me gustaría hacer un pedido:\n\n${lines.join('\n')}\n\nTotal: ${formatMXN(cartTotal)}`
-    const url = `https://wa.me/526643142424?text=${encodeURIComponent(msg)}`
+    const url = `https://wa.me/526634316007?text=${encodeURIComponent(msg)}`
     window.open(url, '_blank', 'noopener,noreferrer')
   }
 
