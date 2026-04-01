@@ -2,13 +2,13 @@ import { useState } from 'react'
 
 const items = [
   {
-    image: '/dist/assets/about-image.png',
+    image: '/assets/about-image.png',
     heading: 'Nuestra Historia',
     text: 'En Armandita Coffee and Friends, nos enorgullece ofrecer café de especialidad y una experiencia culinaria única que refleja la rica cultura de nuestra comunidad. Desde nuestros inicios, hemos estado comprometidos a servir platos auténticos elaborados con ingredientes frescos y de alta calidad.',
     expandable: false,
   },
   {
-    image: '/dist/assets/menu.jpg',
+    image: '/assets/menu.jpg',
     heading: 'Nuestro Menú',
     text: 'El menú de Armandita Coffee and Friends está diseñado para deleitar todos los paladares, ofreciendo una variedad de opciones. Cada receta está cuidadosamente elaborada para resaltar los sabores auténticos y frescos de nuestra cocina.',
     expandable: true,

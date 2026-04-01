@@ -7,7 +7,7 @@ const events = [
     timeEnd: null,
     location: 'Armandita Coffe and Friends',
     locationSub: 'VISITA NUESTRAS REDES SOCIALES',
-    image: '/dist/assets/redes-sociales-3.jpg',
+    image: '/assets/redes-sociales-3.jpg',
   },
   {
     date: '18/04/2026',
@@ -17,7 +17,7 @@ const events = [
     timeEnd: '12 p. m.',
     location: 'Armandita Coffe and Friends',
     locationSub: null,
-    image: '/dist/assets/redes-sociales-1.jpg',
+    image: '/assets/redes-sociales-1.jpg',
   },
   {
     date: '18/04/2026',
@@ -27,7 +27,7 @@ const events = [
     timeEnd: '5 p. m.',
     location: 'Armandita Coffe and Friends',
     locationSub: null,
-    image: '/dist/assets/redes-sociales.jpg',
+    image: '/assets/redes-sociales.jpg',
   },
 ]
 

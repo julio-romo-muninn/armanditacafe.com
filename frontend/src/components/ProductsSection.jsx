@@ -6,7 +6,7 @@ const products = [
     name: 'Blend Armandita Grano 500 gr',
     category: 'grano',
     price: 340,
-    image: '/dist/assets/blend-grano.jpg',
+    image: '/assets/blend-grano.jpg',
     description: 'Variedad: Bourbon, caturra y mundo maya. Cultivado a 1,300 msnm con puntaje en taza de 86. Notas: acidez media, cuerpo intenso con notas a moras, cacao y frutas secas.',
   },
   {
@@ -14,7 +14,7 @@ const products = [
     name: 'Blend Armandita Grano 250 gr',
     category: 'grano',
     price: 180,
-    image: '/dist/assets/blend-grano.jpg',
+    image: '/assets/blend-grano.jpg',
     description: 'Variedad: Bourbon, caturra y mundo maya. Cultivado a 1,300 msnm con puntaje en taza de 86. Notas: acidez media, cuerpo intenso con notas a moras, cacao y frutas secas.',
   },
   {
@@ -22,7 +22,7 @@ const products = [
     name: 'Blend Armandita Molido 500 gr',
     category: 'molido',
     price: 340,
-    image: '/dist/assets/blend-molido.jpg',
+    image: '/assets/blend-molido.jpg',
     description: 'Variedad: Bourbon, caturra y mundo maya. Cultivado a 1,300 msnm con puntaje en taza de 86. Notas: acidez media, cuerpo intenso con notas a moras, cacao y frutas secas.',
   },
   {
@@ -30,7 +30,7 @@ const products = [
     name: 'Blend Armandita Molido 250 gr',
     category: 'molido',
     price: 180,
-    image: '/dist/assets/blend-molido.jpg',
+    image: '/assets/blend-molido.jpg',
     description: 'Variedad: Bourbon, caturra y mundo maya. Cultivado a 1,300 msnm con puntaje en taza de 86. Notas: acidez media, cuerpo intenso con notas a moras, cacao y frutas secas.',
   },
 ]

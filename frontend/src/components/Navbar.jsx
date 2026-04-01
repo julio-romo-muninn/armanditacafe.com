@@ -14,7 +14,7 @@ export default function Navbar() {
     <nav className={`navbar ${scrolled ? 'scrolled' : ''}`} id="navbar">
       <div className="navbar-inner">
         <a href="#" className="navbar-logo">
-          <img src="/dist/assets/logo-original.webp" alt="Armandita Coffee and Friends" />
+          <img src="/assets/logo-original.webp" alt="Armandita Coffee and Friends" />
         </a>
         <div className="navbar-right">
           <ul className={`navbar-links ${menuOpen ? 'open' : ''}`}>

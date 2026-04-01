@@ -2,21 +2,21 @@ import { useState, useEffect, useCallback } from 'react'
 
 const slides = [
   {
-    image: '/dist/assets/redes-sociales-3.jpg',
+    image: '/assets/redes-sociales-3.jpg',
     title: 'Nuestros eventos',
     subtitle: 'Taller de Pintura | Taller de Cerámica | Taller de extracción de café',
     cta: null,
     overlay: 0.5,
   },
   {
-    image: '/dist/assets/redes-sociales-1.jpg',
+    image: '/assets/redes-sociales-1.jpg',
     title: 'Reserva un espacio para tu evento.',
     subtitle: null,
     cta: { text: 'Reservar', href: 'tel:6634316007' },
     overlay: 0.5,
   },
   {
-    image: '/dist/assets/redes-sociales.jpg',
+    image: '/assets/redes-sociales.jpg',
     title: 'Café de especialidad y Experiencias únicas',
     subtitle: 'Disfruta de café de especialidad con tueste en casa',
     cta: { text: 'Comprar café', href: '#contact' },

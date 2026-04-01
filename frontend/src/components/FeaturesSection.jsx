@@ -1,16 +1,16 @@
 const cards = [
   {
-    image: '/dist/assets/cafe-original.jpg',
+    image: '/assets/cafe-original.jpg',
     title: 'Café de alta calidad',
     text: 'Seleccionamos cuidadosamente los mejores granos de café de Oaxaca y Veracruz para garantizar una experiencia excepcional.',
   },
   {
-    image: '/dist/assets/tueste-original.jpg',
+    image: '/assets/tueste-original.jpg',
     title: 'Tueste artesanal',
     text: 'Tostamos en pequeños lotes en nuestro propio taller para resaltar los perfiles únicos de cada origen.',
   },
   {
-    image: '/dist/assets/hero-events.png',
+    image: '/assets/hero-events.png',
     title: 'Pan artesanal',
     text: 'Pan horneado en casa, que complementa perfectamente tu experiencia Armandita.',
   },
